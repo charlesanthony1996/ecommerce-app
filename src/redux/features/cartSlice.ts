@@ -44,6 +44,23 @@ export const cartSlice = createSlice({
                 )
                 return { ...state, cartItems: updatedItems }
             }
+        },
+        setCartState: (state, action: PayloadAction<boolean>) => {
+            return { ...state, cartOpen: action.payload }
+        },
+        emptyCart: (state, action: PayloadAction<boolean>) => {
+            return { ...state, cartItems: [] }
         }
     }
 })
+
+
+export const {
+    addToCart,
+    removeFromCart,
+    setCartState,
+    reducedFromCart,
+    emptyCart
+    
+} = cartSlice.actions
+export default cartSlice.reducer
