@@ -2,7 +2,7 @@ import { FC } from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai"
 
 const RatingStar: FC <{rating: number }> = ({ rating }) => {
-    const ratingNum = parseFloat(rating.ToString())
+    const ratingNum = parseFloat(rating.toString())
     const main = Math.floor(ratingNum)
     const other = 5 - main
 
@@ -84,6 +84,17 @@ const RatingStar: FC <{rating: number }> = ({ rating }) => {
             <AiOutlineStar></AiOutlineStar>
             </>
         )
+    } else {
+        notShowing = <></>
     }
+
+    return (
+        <div>
+            {showing}
+            {notShowing}
+            <span>{rating}</span>
+        </div>
+    )
 }
 
+export default RatingStar
