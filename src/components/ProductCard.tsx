@@ -8,3 +8,4 @@ import { AiOutlineShoppingCart } from "react-icons/ai"
 import { Link } from "react-router-dom"
 import PriceSection from "./PriceSection";
 import useAuth from "../hooks/useAuth"
+
