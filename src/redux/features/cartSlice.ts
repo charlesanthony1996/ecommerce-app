@@ -48,7 +48,7 @@ export const cartSlice = createSlice({
         setCartState: (state, action: PayloadAction<boolean>) => {
             return { ...state, cartOpen: action.payload }
         },
-        emptyCart: (state, action: PayloadAction<boolean>) => {
+        emptyCart: (state) => {
             return { ...state, cartItems: [] }
         }
     }
