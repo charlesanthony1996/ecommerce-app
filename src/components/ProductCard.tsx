@@ -9,3 +9,12 @@ import { Link } from "react-router-dom"
 import PriceSection from "./PriceSection";
 import useAuth from "../hooks/useAuth"
 
+const ProductCard: FC = () => {
+    return (
+        <div>
+            
+        </div>
+    )
+}
+
+export default ProductCard
