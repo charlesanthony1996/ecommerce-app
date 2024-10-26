@@ -8,9 +8,52 @@ const AllProducts: FC = () => {
     const dispatch = useAppDispatch()
     const sortRef = useRef<HTMLSelectElement>(null)
     const [currentProducts, setCurrentProducts] = useState<Product[]>([])
-    const allProducts = useAppSelector((state) => {
+    const allProducts = useAppSelector((state) =>
         state.productReducer.allProducts
-    }) 
+    )
+
+    useEffect(() => {
+        const fetchProducts = () => {
+            fetch("https://dummyjson/products?limit=500")
+            .then((res) => res.json())
+            .then(({products}) => {
+                dispatch(addProducts(products))
+            })
+        }
+
+        if (allProducts.length === 0) fetchProducts()
+    }, [allProducts, dispatch])
+
+    useEffect(() => {
+        setCurrentProducts(allProducts)
+    }, [allProducts])
+
+    const sortProducts = (sortValue: string) => {
+        if (sortValue === "asc") {
+            setCurrentProducts(
+                [...currentProducts].sort((a, b) => {
+                    const aPrice = 
+                    a.price - (a.price * (a.discountPercentage ?? 0) / 100)
+                    const bPrice =
+                    b.price - (b.price * (b.discountPercentage ?? 0)/ 100)
+                    return aPrice - bPrice
+                })
+            )
+        } else if (sortValue === "desc") {
+            setCurrentProducts(
+                [...currentProducts].sort((a, b) => {
+                    const aPrice =
+                    a.price - (a.price * (a.discountPercentage ?? 0)) / 100
+                    const bPrice =
+                    b.price - (b.price * (b.discountPercentage ?? 0)) / 100
+                    return aPrice - bPrice
+                })
+            )
+        } else {
+            setCurrentProducts([...currentProducts].sort((a, b) => a.id - b.id))
+        }
+    }
+
 
     return (
         <div className="container mx-auto min-h-[83vh] p-4 font-karla">
@@ -20,7 +63,7 @@ const AllProducts: FC = () => {
                         <span className="text-lg dark:text-white">Products</span>
                         <select
                         ref={sortRef}
-                        className="border border-black dark:text-white"
+                        className="border border-black dark:text-white rounded p-1 dark:text-white dark:bg-slate-600"
                         onChange={(e) => sortProducts(e.target.value)}
                         >
                             <option value="default"></option>
@@ -37,5 +80,6 @@ const AllProducts: FC = () => {
             </div>
         </div>
     )
-
 }
+
+export default AllProducts
