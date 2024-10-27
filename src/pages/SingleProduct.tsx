@@ -172,7 +172,7 @@ const singleProduct: FC = () => {
                         <button
                         type="button"
                         className="flex items-center space-x-1 mb-2 hover:bg-pink-700 text-white p-2 rounded bg-pink-500"
-                        onClick={addToCart}
+                        onClick={addCart}
                         >
                             <AiOutlineShoppingCart></AiOutlineShoppingCart>
                             <span>Add to cart</span>
