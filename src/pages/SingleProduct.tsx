@@ -114,9 +114,9 @@ const singleProduct: FC = () => {
     }
 
     return (
-        <div className="">
-            <div className="">
-                <div className="">
+        <div className="container mx-auto pt-8 dark:text-white">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 px-4 font-karla">
+                <div className="space-y-2">
                     <img></img>
                     <div>
 
@@ -143,11 +143,44 @@ const singleProduct: FC = () => {
                             </tr>
                         </tbody>
                     </table>
-                    <div>
-                        
+                    <div className="mt-2">
+                        <h2>About the product</h2>
+                        <p className="leading-5">
+                            {product?.description} {lorem}
+                        </p>
+                    </div>
+                    <div className="flex flex-wrap items-center mt-4 mb-2 space-x-2">
+                        <button
+                        type="button"
+                        className="flex items-center space-x-1 mb-2 hover:bg-pink-700 text-white p-2 rounded bg-pink-500"
+                        onClick={addToCart}
+                        >
+                            <AiOutlineShoppingCart></AiOutlineShoppingCart>
+                            <span>Add to cart</span>
+                        </button>
+                        <button
+                        type="button"
+                        className="flex items-center space-x-1 mb-2 bg-blue-500 text-white p-2 rounded hover:bg-blue-700"
+                        onClick={buyNow} 
+                        >
+                            <FaHandHoldingDollar></FaHandHoldingDollar>
+                        </button>
+                        <span>Buy now</span>
+                        <button
+                        type="button"
+                        className="flex items-center space-x-1 mb-2 bg-yellow-500 text-white p-2 rounded hover:bg-yellow-700"
+                        onClick={addWishList}
+                        >
+                            <MdFavoriteBorder></MdFavoriteBorder>
+                        </button>
+                        <span>Add to wishlist</span>
                     </div>
                 </div>
+                {product && <Reviews id={product.id} ></Reviews>}
             </div>
+            <hr className="mt-4"></hr>
+            <ProductList title="Similar products" products={similar}></ProductList>
+            <br />
         </div>
     )
 
