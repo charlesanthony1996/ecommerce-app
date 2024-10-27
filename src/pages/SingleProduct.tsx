@@ -117,29 +117,48 @@ const singleProduct: FC = () => {
         <div className="container mx-auto pt-8 dark:text-white">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 px-4 font-karla">
                 <div className="space-y-2">
-                    <img></img>
-                    <div>
-
+                    <img src={selectedImg} alt="selected" className="h-80"></img>
+                    <div className="flex space-x-1 items-center">
+                        {imgs && 
+                        imgs.map((_img) => (
+                            <img
+                            src={_img}
+                            key={_img}
+                            alt="thumb"
+                            className={`w-12 cursor-pointer hover:border-2 hover:border-black ${
+                                _img === selectedImg ? "border-2 border-black" : ""
+                            }`}
+                            onClick={() => setSelectedImg(_img)}
+                            >
+                            </img>
+                        ))}
                     </div>
                 </div>
-                <div>
-                    <h2></h2>
-                    <div>
-
+                <div className="px-2">
+                    <h2 className="text-2xl">{product?.title}</h2>
+                    {product?.rating && <RatingStar rating={product?.rating}></RatingStar>}
+                    <div className="mt-1">
+                        {product?.discountPercentage && (
+                            <PriceSection
+                            discountPercentage={product?.discountPercentage}
+                            price={product?.price}
+                            >
+                            </PriceSection>
+                        )}
                     </div>
-                    <table>
+                    <table className="mt-2">
                         <tbody>
                             <tr>
-                                <td></td>
-                                <td></td>
+                                <td className="pr-2 font-bold">Brand</td>
+                                <td>{product?.brand}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
+                                <td className="pr-2 font-bold">Category</td>
+                                <td>{product?.category}</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
+                                <td className="pr-2 font-bold">Stock</td>
+                                <td>{product?.stock}</td>
                             </tr>
                         </tbody>
                     </table>
