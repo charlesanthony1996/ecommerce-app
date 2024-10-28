@@ -31,7 +31,7 @@ export const cartSlice = createSlice({
             )
             return { ...state, cartItems: updatedItems }
         },
-        reducedFromCart: (state, action: PayloadAction<number>) => {
+        reduceFromCart: (state, action: PayloadAction<number>) => {
             const { cartItems } = state
             const _item = cartItems.find((item) => item.id === action.payload)
             if (_item?.quantity && _item.quantity > 1) {
@@ -59,7 +59,7 @@ export const {
     addToCart,
     removeFromCart,
     setCartState,
-    reducedFromCart,
+    reduceFromCart,
     emptyCart
     
 } = cartSlice.actions
