@@ -30,37 +30,75 @@ const Cart: FC = () => {
 
     if (isOpen) {
         return (
-            <div>
-                <div>
-                    <h1>Checkout</h1>
-                    <p>Welcome to the checkout section</p>
-                    <div>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-
-                <div>
-                    <div>
-                        <h3></h3>
-                    </div>
-                    <div>
-                        <div>
-                            <img></img>
-                            <p>Your cart is empty</p>
+            <div className="bg-[#0000007d] w-full min-h-screen fixed left-0 top-0 z-20 overflow-y-auto">
+                {checkout ? (
+                    <div className="max-w-[400px] w-full min-h-full bg-white absolute right-0 top-0 p-5 font-karla dark:bg-slate-600 dark:text-white">
+                        <h1 className="font-bold text-xl mb-1">Checkout</h1>
+                        <p className="leading-4 mb-3">
+                            Welcome to the checkout section. This is being a development
+                            project, I havent implemented any payment related task. If you
+                            click the cancel button you'll go back to the cart segment.
+                        </p>
+                        <div className="flex items-center space-x-2">
+                            <span
+                            className="w-1/2 border border-gray-500 rounded cursor-pointer text-center py-1"
+                            onClick={() => setCheckout(false)}
+                            >
+                                Cancel
+                            </span>
+                            <span
+                            className="w-1/2 border border-gray-500 rounded cursor-poiner text-center py-1"
+                            onClick={handleOrder}
+                            data-test="confirm-order-btn"
+                            >
+                                Confirm
+                            </span>
                         </div>
                     </div>
-                    <div>
-                        <h2></h2>
-                        <h2></h2>
+                ) : (
+                    <div 
+                    className="max-w-[400px] w-full min-h-full bg-white absolute right-0 top-0 p-6 font-karla dark:bg-slate-600 dark:text-white"
+                    data-test="cart-container"
+                    >
+                <div className="flex items-center justify-between">
+                    <h1 className="font-semibold text-2xl">Your cart</h1>
+                    <RxCross1
+                    className="text-[24px] cursor-pointer hover:opacity-70"
+                    onClick={() => dispatch(setCartState(false))}
+                    data-test="cart-close"
+                    >
+                    </RxCross1>
+                </div>
+                <div className="mt-6 space-y-2">
+                    {items?.length > 0 ? (
+                        items.map((item) => <CartRow key={item.id} {...item}></CartRow>)
+                    ): (
+                        <div className="flex flex-col justify-center items-center p-4">
+                            <img src="/emptyCart.jpg" alt="empty" className="w-40"></img>
+                            <p className="text-center text-xl my-2">Your cart is empty</p>
+                        </div>
+                    )}
                     </div>
-                    <button>
+                    {items?.length > 0 && (
+                    <>
+                    <div className="flex items-center justify-between p-2">
+                        <h2 className="font-bold">Total</h2>
+                        <h2 className="font-bold">${calculateTotal()}</h2>
+                    </div>
+                    <button
+                    type="button"
+                    data-test="checkout-btn"
+                    onClick={() => setCheckout(true)}
+                    className="w-full text-center text-white bg-blue-500 py-2 my-4 rounded font-bold text-xl hover:bg-blue-700"
+                    >
                         Checkout
                     </button>
+                    </>
+                    )}
                 </div>
+                )}
             </div>
         )
-
     }
 }
 
