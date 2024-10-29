@@ -23,7 +23,7 @@ from it. Do not be angry with the pain in the reprimand in the pleasure
 he wants to be a hair from the pain in the hope that there is no breeding.
 `
 
-const singleProduct: FC = () => {
+const SingleProduct: FC = () => {
     const dispatch = useAppDispatch()
     const { productID } = useParams()
     const [product, setProduct ] = useState<Product>()
@@ -205,4 +205,4 @@ const singleProduct: FC = () => {
 
 }
 
-export default singleProduct
+export default SingleProduct
