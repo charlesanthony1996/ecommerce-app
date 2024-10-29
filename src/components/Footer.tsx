@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer: FC = () => (
     <div>
-        <div></div>
+        <div>All Rights Reserved</div>
         <div>
             <Link
             to="https://github.com/charlesanthony1996"
