@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { FeatureItem } from "../models/FeatureItem"
 
-const FeatureCard: FC<FeatureItem> = ({ icon, desc, title }) => {
+const FeatureCard: FC<FeatureItem> = ({ icon, desc, title }) => (
     <div className="
     flex 
     gap-2
@@ -10,11 +10,12 @@ const FeatureCard: FC<FeatureItem> = ({ icon, desc, title }) => {
     px-4
     py-6
     font-karla">
+        {icon}
         <div>
             <h2 className="font-medium text-xl dark:text-white">{title}</h2>
             <p className="text-gray-600 dark:text-white">{desc}</p>
         </div>
     </div>
-}
+)
 
 export default FeatureCard
