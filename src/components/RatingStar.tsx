@@ -89,10 +89,12 @@ const RatingStar: FC <{rating: number }> = ({ rating }) => {
     }
 
     return (
-        <div>
+        <div className="flex items-center text-[#ffb21d]">
             {showing}
             {notShowing}
-            <span>{rating}</span>
+            <span className="ml-2 text-gray-600 font-semibold dark:text-white">
+                {rating}
+            </span>
         </div>
     )
 }
