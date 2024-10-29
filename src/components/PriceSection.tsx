@@ -12,14 +12,14 @@ const PriceSection: FC<{price: number; discountPercentage: number}> = ({
         return <h2 className="">${price}</h2>
     }
     return (
-        <div>
-            <h2>
+        <div className="leading-3">
+            <h2 className="font-medium text-blue-500 text-xl">
                 ${result.toFixed(2)}
             </h2>
-            <span>
+            <span className="mr-2 text-sm line-through opacity-70 dark:text-white">
                 ${price}
             </span>
-            <span>
+            <span className="text-sm font-semibold dark:text-white">
                 -{discountPercentage}%
             </span>
         </div>
