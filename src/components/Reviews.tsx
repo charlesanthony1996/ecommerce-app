@@ -27,8 +27,17 @@ const Reviews: FC<{ id: number }> = ({ id }) => {
         setItems(_arr)
     }, [id])
     return (
-        <div>
-            
+        <div className="px-2">
+            <h1 className="text-2xl font-semibold mb-2">Reviews</h1>
+            <div className="space-y-2">
+                {items?.map(({ username, rating, review }) =>  (
+                <div key={username} className="leading-4" data-test="review-item">
+                    <h3 className="font-semibold text-md">{username}</h3>
+                    <RatingStar rating={rating}></RatingStar>
+                    <p className="text-sm leading-4">{review}</p>
+                </div>
+                ))}
+            </div>
         </div>
     )
 }
