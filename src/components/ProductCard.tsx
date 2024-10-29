@@ -9,7 +9,7 @@ import { Link } from "react-router-dom"
 import PriceSection from "./PriceSection";
 import useAuth from "../hooks/useAuth"
 
-const ProductCard: FC<Product> = () => ({
+const ProductCard: FC<Product> = ({
     id,
     price,
     thumbnail,
